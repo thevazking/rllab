@@ -57,7 +57,7 @@ class GaussianConvRegressor(LasagnePowered):
         :param use_trust_region: Whether to use trust region constraint.
         :param step_size: KL divergence constraint for each iteration
         :param learn_std: Whether to learn the standard deviations. Only effective if adaptive_std is False. If
-        adaptive_std is True, this parameter is ignored, and the weights for the std network are always learned.
+        adaptive_std is True, this parameter is ignored, and the weights for the std network are always learned."
         :param adaptive_std: Whether to make the std a function of the states.
         :param std_share_network: Whether to use the same network as the mean.
         :param std_hidden_sizes: Number of hidden units of each layer of the std network. Only used if
@@ -70,9 +70,9 @@ class GaussianConvRegressor(LasagnePowered):
 
         if optimizer is None:
             if use_trust_region:
-                optimizer = PenaltyLbfgsOptimizer("optimizer")
+                optimizer = PenaltyLbfgsOptimizer()
             else:
-                optimizer = LbfgsOptimizer("optimizer")
+                optimizer = LbfgsOptimizer()
 
         self._optimizer = optimizer
 
@@ -241,6 +241,8 @@ class GaussianConvRegressor(LasagnePowered):
                 inputs = [xs, ys]
             loss_before += self._optimizer.loss(inputs)
 
+            # TODO REMOVEK
+            print("optimizer\n", self._optimizer)
             self._optimizer.optimize(inputs)
             loss_after += self._optimizer.loss(inputs)
             if self._use_trust_region:
