@@ -1761,6 +1761,8 @@ def get_output(layer_or_layers, inputs=None, **kwargs):
                        for layer in all_layers
                        if isinstance(layer, InputLayer) and
                        layer not in treat_as_input)
+
+
     # update layer-to-expression mapping from given input(s), if any
     if isinstance(inputs, dict):
         all_outputs.update((layer, tf.convert_to_tensor(expr))

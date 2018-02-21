@@ -33,8 +33,10 @@ def run_task(v):
     algo.train()
 
 
-for step_size in [0.01, 0.05, 0.1]:
-    for seed in [1, 11, 21, 31, 41]:
+# for step_size in [0.01, 0.05, 0.1]:
+for step_size in [0.01]:
+#   for seed in [1, 11, 21, 31, 41]:
+   for seed in [1]:
         run_experiment_lite(
             run_task,
             exp_prefix="first_exp",
@@ -51,4 +53,4 @@ for step_size in [0.01, 0.05, 0.1]:
             # plot=True,
             # terminate_machine=False,
         )
-        sys.exit()
+#        sys.exit()

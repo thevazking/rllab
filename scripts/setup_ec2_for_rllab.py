@@ -23,7 +23,7 @@ USE_GPU = False
 
 USE_TF = True
 
-AWS_REGION_NAME = "us-west-1"
+AWS_REGION_NAME = "us-east-1"
 
 if USE_GPU:
     DOCKER_IMAGE = "dementrock/rllab3-shared-gpu"

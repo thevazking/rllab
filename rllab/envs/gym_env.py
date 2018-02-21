@@ -7,6 +7,7 @@ import logging
 
 try:
     from gym.wrappers.monitoring import logger as monitor_logger
+    # from gym import logger as monitor_logger
 
     monitor_logger.setLevel(logging.WARNING)
 except Exception as e:
@@ -21,6 +22,8 @@ from rllab.spaces.discrete import Discrete
 from rllab.spaces.product import Product
 from rllab.misc import logger
 
+# Hack Imports
+import reacher_150
 
 def convert_gym_space(space):
     if isinstance(space, gym.spaces.Box):
@@ -105,6 +108,7 @@ class GymEnv(Env, Serializable):
     def reset(self):
         if self._force_reset and self.monitoring:
             from gym.wrappers.monitoring import Monitor
+            # from gym.wrappers.monitor import Monitor
             assert isinstance(self.env, Monitor)
             recorder = self.env.stats_recorder
             if recorder is not None:

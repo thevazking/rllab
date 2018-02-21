@@ -241,8 +241,6 @@ class GaussianConvRegressor(LasagnePowered):
                 inputs = [xs, ys]
             loss_before += self._optimizer.loss(inputs)
 
-            # TODO REMOVEK
-            print("optimizer\n", self._optimizer)
             self._optimizer.optimize(inputs)
             loss_after += self._optimizer.loss(inputs)
             if self._use_trust_region:

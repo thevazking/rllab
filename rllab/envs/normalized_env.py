@@ -42,6 +42,8 @@ class NormalizedEnv(ProxyEnv, Serializable):
 
     def _apply_normalize_obs(self, obs):
         self._update_obs_estimate(obs)
+        # TODO next line hack for Conv nets
+        obs = obs.reshape(self.observation_space.flat_dim)
         return (obs - self._obs_mean) / (np.sqrt(self._obs_var) + 1e-8)
 
     def _apply_normalize_reward(self, reward):
