@@ -17,9 +17,6 @@ class LinearFeatureBaseline(Baseline):
         self._coeffs = val
 
     def _features(self, path):
-        # TODO REMOVE
-        print('linear feature baseline path keys')
-        print(path.keys())
         o = np.clip(path["observations"], -10, 10)
         l = len(path["rewards"])
         al = np.arange(l).reshape(-1, 1) / 100.0
