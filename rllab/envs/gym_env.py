@@ -7,7 +7,7 @@ import logging
 
 try:
     from gym.wrappers.monitoring import logger as monitor_logger
-    # from gym import logger as monitor_logger
+    # from gym import logger as monitor_logger # 0.9.6
 
     monitor_logger.setLevel(logging.WARNING)
 except Exception as e:
@@ -108,7 +108,7 @@ class GymEnv(Env, Serializable):
     def reset(self):
         if self._force_reset and self.monitoring:
             from gym.wrappers.monitoring import Monitor
-            # from gym.wrappers.monitor import Monitor
+            # from gym.wrappers.monitor import Monitor # gym 0.9.6
             assert isinstance(self.env, Monitor)
             recorder = self.env.stats_recorder
             if recorder is not None:

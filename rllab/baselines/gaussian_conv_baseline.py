@@ -22,8 +22,8 @@ class GaussianConvBaseline(Baseline, Parameterized):
             regressor_args = dict()
 
         self.only_first_dimension = only_first_dimension
-        print("env observation space")
-        print(env_spec.observation_space.shape)
+#         print("env observation space")
+#         print(env_spec.observation_space.shape)
 
         if self.only_first_dimension:
             shape = (1,) + env_spec.observation_space.shape[1:]
@@ -44,8 +44,11 @@ class GaussianConvBaseline(Baseline, Parameterized):
     @overrides
     def fit(self, paths):
         observations = np.concatenate([p["observations"] for p in paths])
-        print("observations shape in fit")
-        print(observations.shape)
+#         print("observations shape in fit")
+#         print(observations.shape)
+#         print("p keys")
+#         print(paths[0].keys())
+#         print(paths[0]['env_infos'])
         if self.only_first_dimension:
             observations = observations[:,0:1,...]
         returns = np.concatenate([p["returns"] for p in paths])
@@ -54,8 +57,8 @@ class GaussianConvBaseline(Baseline, Parameterized):
     @overrides
     def predict(self, path):
         observations = path['observations']
-        print("observations shape in predict")
-        print(observations.shape)
+#         print("observations shape in predict")
+#         print(observations.shape)
         if self.only_first_dimension:
             observations = observations[:,0:1,...]
         return self._regressor.predict(observations).flatten()
